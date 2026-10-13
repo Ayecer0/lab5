@@ -5,16 +5,19 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Route;
 
+// Ресурсные маршруты для статей (создают /articles, /articles/create, /articles/{article} и т.д.)
+Route::resource('articles', ArticleController::class);
+
 Route::get('/', [MainController::class, 'index']);
 Route::get('/galery/{full_image}', [MainController::class, 'show']);
 
-Route::get('articles/show', [ArticleController::class, 'index']);
+// Удалили конфликтный Route::get('articles/show', ...)
 
-// регистрация
+// Регистрация
 Route::get('/signup', [AuthController::class, 'create']);
 Route::post('/signup', [AuthController::class, 'signup']);
 
-// вход
+// Вход
 Route::get('/auth/login', [AuthController::class, 'login']);
 Route::post('/auth/login', [AuthController::class, 'signin']);
 
